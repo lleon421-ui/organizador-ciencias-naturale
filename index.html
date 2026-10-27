@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organizador de Tareas | Ciencias Naturales</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-art left-art" aria-hidden="true">🌎🌿</div>
+    <div class="hero-copy">
+      <h1>Organizador de Tareas</h1>
+      <p class="subtitle">Ciencias Naturales</p>
+      <p class="motto">✦ Pequeñas acciones, grandes aprendizajes ✦</p>
+    </div>
+    <div class="hero-art right-art" aria-hidden="true">⚛️ 🧪 🌱</div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="brand"><span>🌱</span> Mi organizador</div>
+      <nav aria-label="Navegación principal">
+        <button class="nav-link active" data-view="inicio">🏠 <span>Inicio</span></button>
+        <button class="nav-link" data-view="tareas">📋 <span>Mis tareas</span></button>
+        <button class="nav-link" data-action="add">➕ <span>Agregar tarea</span></button>
+        <button class="nav-link" data-view="calendario">🗓️ <span>Calendario</span></button>
+        <button class="nav-link" data-view="categorias">📁 <span>Categorías</span></button>
+        <button class="nav-link" data-view="configuracion">⚙️ <span>Configuración</span></button>
+      </nav>
+      <div class="sidebar-note">🌿 ¡Tú puedes!<br><small>Un paso a la vez.</small></div>
+    </aside>
+
+    <main class="main-content">
+      <section class="quick-actions" aria-label="Acciones rápidas">
+        <button class="action-card green" data-action="add"><span>⊕</span>Agregar tarea</button>
+        <button class="action-card blue" data-action="edit"><span>✎</span>Editar tarea</button>
+        <button class="action-card pink" data-action="delete"><span>▤</span>Eliminar tarea</button>
+        <button class="action-card purple" data-view="tareas"><span>◎</span>Ver todas</button>
+        <button class="action-card yellow" data-view="calendario"><span>▦</span>Calendario</button>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel task-panel" id="mainPanel">
+          <div class="panel-heading">
+            <h2>📋 <span id="panelTitle">Mis tareas</span></h2>
+            <span id="taskCount" class="count-pill">0 tareas</span>
+          </div>
+          <div class="toolbar">
+            <input id="searchInput" type="search" placeholder="Buscar tarea..." aria-label="Buscar tarea">
+            <select id="filterStatus" aria-label="Filtrar por estado">
+              <option value="">Todos los estados</option>
+              <option>Pendiente</option>
+              <option>En proceso</option>
+              <option>Completada</option>
+            </select>
+          </div>
+          <div id="viewContent"></div>
+        </section>
+
+        <aside class="right-column">
+          <section class="inspiration card-soft">
+            <p class="inspiration-title">La naturaleza también es parte de tu éxito</p>
+            <div class="inspiration-art">🌱 📚</div>
+          </section>
+          <section class="reminder card-soft">
+            <h3>🔔 Recordatorio</h3>
+            <p id="reminderText">¡No olvides entregar tus tareas a tiempo!</p>
+            <div class="underline"></div>
+          </section>
+          <section class="summary card-soft">
+            <h3>📊 Mi progreso</h3>
+            <div class="progress-track"><div id="progressBar"></div></div>
+            <p id="progressText">0% de tareas completadas</p>
+          </section>
+        </aside>
+      </div>
+      <footer>Hecho para aprender, organizarse y cuidar la naturaleza 🌎</footer>
+    </main>
+  </div>
+
+  <dialog id="taskDialog">
+    <form id="taskForm">
+      <div class="dialog-heading">
+        <h2 id="dialogTitle">Agregar tarea</h2>
+        <button type="button" class="icon-button" id="closeDialog" aria-label="Cerrar">✕</button>
+      </div>
+      <input type="hidden" id="taskId">
+      <label for="taskName">Nombre de la tarea</label>
+      <input id="taskName" required maxlength="120" placeholder="Ej. Leer sobre la célula">
+      <div class="form-row">
+        <div>
+          <label for="taskDate">Fecha de entrega</label>
+          <input id="taskDate" type="date" required>
+        </div>
+        <div>
+          <label for="taskCategory">Categoría</label>
+          <input id="taskCategory" list="categoryOptions" required maxlength="50" placeholder="Biología">
+          <datalist id="categoryOptions">
+            <option value="Biología"><option value="Ecología"><option value="Medio ambiente">
+            <option value="Biodiversidad"><option value="Química"><option value="Física">
+          </datalist>
+        </div>
+      </div>
+      <label for="taskStatus">Estado</label>
+      <select id="taskStatus">
+        <option>Pendiente</option><option>En proceso</option><option>Completada</option>
+      </select>
+      <div class="dialog-actions">
+        <button type="button" class="btn secondary" id="cancelDialog">Cancelar</button>
+        <button type="submit" class="btn primary">Guardar tarea</button>
+      </div>
+      <p class="form-hint">Los cambios se guardan en este navegador.</p>
+    </form>
+  </dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
